@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -50,14 +51,5 @@ class DefaultSubjectTest {
         DefaultSubject subject = new DefaultSubject("Mathematics", "Ada Lovelace", schedule);
 
         assertEquals(List.of(), subject.getClassTimes());
-    }
-
-    // Навмисно хибний тест для демонстрації провальної збірки на сервері CI
-    @Test
-    void demoFailingTestForCi() {
-        DefaultSchedule schedule = new DefaultSchedule();
-        DefaultSubject subject = new DefaultSubject("Mathematics", "Ada Lovelace", schedule);
-
-        assertEquals("Physics", subject.getName());
     }
 }
