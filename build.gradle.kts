@@ -1,5 +1,7 @@
 plugins {
     id("java")
+    // Лінтер: перевіряє стиль коду за правилами з config/checkstyle/checkstyle.xml
+    id("checkstyle")
 }
 
 group = "org.vibeinc.aislop"
@@ -15,6 +17,23 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+checkstyle {
+    toolVersion = "10.21.4"
+    // Будь-яке порушення правил валить збірку
+    isIgnoreFailures = false
+    maxWarnings = 0
+}
+
 tasks.test {
     useJUnitPlatform()
+    // Виводити в консоль Jenkins результат кожного тесту
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "org.vibeinc.aislop.Main"
+    }
 }
